@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reply Radar — never leave a customer on read</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#0f1420;color:#e8ecf3}
+header{padding:18px 22px;background:#151c2c;border-bottom:1px solid #26304a}h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:#9aa6bf;font-size:14px}
+main{display:grid;grid-template-columns:340px 1fr;gap:16px;padding:16px;max-width:1200px;margin:auto}
+@media(max-width:800px){main{grid-template-columns:1fr}}
+.card{background:#151c2c;border:1px solid #26304a;border-radius:10px;padding:14px}
+label{display:block;font-size:13px;color:#9aa6bf;margin:8px 0 4px}input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #33405f;background:#0f1420;color:#e8ecf3;font:inherit}
+textarea{min-height:90px}button{background:#3b82f6;color:#fff;border:0;border-radius:6px;padding:8px 12px;cursor:pointer;font-weight:600;margin-top:8px}
+button.ghost{background:#26304a}button.ok{background:#16a34a}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.stat{flex:1;min-width:110px;background:#0f1420;border-radius:8px;padding:10px;text-align:center}.stat b{display:block;font-size:22px}
+.item{border:1px solid #26304a;border-radius:8px;padding:10px;margin-bottom:10px}.item.late{border-color:#ef4444}.item.done{opacity:.55}
+.tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:99px;margin-right:4px;background:#26304a}
+.high{background:#7f1d1d}.med{background:#78350f}.low{background:#14532d}.timer{float:right;font-size:13px;font-variant-numeric:tabular-nums}
+.draft{white-space:pre-wrap;background:#0f1420;padding:8px;border-radius:6px;font-size:13px;margin-top:6px}
+footer{text-align:center;color:#9aa6bf;font-size:13px;padding:20px}footer a{color:#93c5fd}
+</style></head><body>
+<header><h1>📡 Reply Radar</h1><p>One inbox for bookings, refunds and complaints — auto-triaged, timed, with a ready-to-send reply. Nobody gets left on read.</p></header>
+<main>
+<section class="card">
+<h3 style="margin-top:0">New customer message</h3>
+<label>Customer name</label><input id="name" placeholder="e.g. Sam">
+<label>Channel</label><select id="channel"><option>Email</option><option>Web form</option><option>Phone voicemail</option><option>Social mention</option><option>DM</option></select>
+<label>Message</label><textarea id="msg" placeholder="Paste what the customer wrote…"></textarea>
+<label>Reply target (minutes)</label><input id="sla" type="number" value="60" min="1">
+<button id="add">Triage &amp; add</button> <button class="ghost" id="sample">Load sample messages</button>
+<p style="font-size:12px;color:#9aa6bf">Runs fully in your browser. Data is saved in localStorage on this device only.</p>
+<button class="ghost" id="clear">Clear all</button>
+</section>
+<section>
+<div class="stats"><div class="stat"><b id="sOpen">0</b>Open</div><div class="stat"><b id="sLate">0</b>Past target</div><div class="stat"><b id="sHigh">0</b>High priority</div><div class="stat"><b id="sDone">0</b>Answered</div></div>
+<div class="card"><label>Filter</label><select id="filter"><option value="open">Open first</option><option value="all">All</option><option value="late">Past target only</option></select><div id="list" style="margin-top:12px"></div></div>
+</section></main>
+<footer>Demo by Austin AI Marketing — <a href="https://austinaimarketingco.com">austinaimarketingco.com</a></footer>
+<script src="app.js"></script></body></html>
